@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Summary Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="{{ url_for('static', filename='style_summary.css') }}"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top py-1">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/">
+          <i class="fas fa-home fa-2x"></i>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">
+            <i class="fas fa-bars text-white"></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Add additional navbar content here if needed -->
+        </div>
+        <div class="d-flex justify-content-center w-100">
+          <h1 class="bg-gray text-decoration-none me-3">𝐃𝐚𝐭𝐚 𝐒𝐮𝐦𝐦𝐚𝐫𝐲</h1>
+        </div>
+        <button class="btn btn-download" onclick="downloadData()" title="Download Summary">
+          <i class="fas fa-download "></i>
+        </button>
+        
+        
+        
+
+        </div>
+      </div>
+    </nav>
+
+    <!-- Aside with Navigation -->
+    <aside>
+      <div class="sidebar-header">
+        <h3>𝐃𝐚𝐭𝐚𝐬𝐞𝐭 𝐍𝐚𝐦𝐞</h3>
+        <strong><p class="file-name">{{ summary.file_name }}</p></strong>
+      </div>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="#general-info">General Information</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#dataset-rows">Rows of the Dataset</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#pie-charts">Pie Charts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#distribution-plot">Distribution Plot</a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="container mt-5">
+      <div class="row justify-content-end">
+        <div class="col-lg-11">
+          <div class="row">
+            <div class="col-4">
+              <section
+                id="general-info"
+                class="section bg-white rounded shadow-lg p-4 mb-4"
+                style="height: 450px; overflow: auto"
+              >
+                <h3 class="section-heading text-center cursor-pointer mb-4">
+                  <strong>General Information</strong>
+                </h3>
+                <ul class="list-unstyled d-flex">
+                  <li class="me-4">
+                    <div class="square-info text-white">
+                      <span>Rows: {{ summary['rows'] }}</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="square-success text-white">
+                      <span>Columns: {{ summary['columns'] }}</span>
+                    </div>
+                  </li>
+                </ul>
+                <div>
+                  <strong>Attributes:</strong>
+                  <ol style="font-size: 14px">
+                    <!-- Modifiez la taille de la police selon vos préférences -->
+                    {% for attribute in summary['attributes'] %}
+                    <li>{{ attribute }}</li>
+                    {% endfor %}
+                  </ol>
+                </div>
+              </section>
+              <section
+              id="pie-charts"
+              class="section bg-white rounded shadow-lg p-4 mb-4 cursor-pointer"
+            >
+              <h3 class="section-heading text-center mb-4">
+                <strong>Pie Charts</strong>
+              </h3>
+              {% for pie_chart in pie_charts %}
+              <div class="pie-chart-container mt-3">
+                <img
+                  src="{{ pie_chart }}"
+                  alt="Pie Chart"
+                  class="pie-chart-img"
+                />
+              </div>
+              {% endfor %}
+            </section>
+            </div>
+            <div class="col-8">
+              <section
+                id="dataset-rows"
+                class="section bg-white cursor-pointer rounded shadow-lg p-4 mb-4"
+                style="height: 450px; overflow: auto"
+              >
+                <h3 class="section-heading text-center mb-4">
+                  <strong>Rows of the Dataset</strong>
+                </h3>
+                <div class="table-container">{{ instances | safe }}</div>
+              </section>
+
+              <section
+                id="distribution-plot"
+                class="section bg-white  cursor-pointer rounded shadow-lg p-4 mb-4"
+                style="height: 370px; overflow: auto"
+              >
+                <h3 class="section-heading text-center mb-4">
+                  <strong>Distribution Plot</strong>
+                </h3>
+                <img
+                  src="{{ dist_plot }}"
+                  alt="Distribution Plot"
+                  class="img-fluid mx-auto d-block"
+                />
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer py-1">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 text-lg-start text-center">
+           
+          </div>
+          <div class="link-dark text-decoration-none me-3">
+            Copyright &copy; 2024
+            <a class="link-dark text-decoration-none me-3" href="#!"
+              >Privacy Policy</a
+            >
+            <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.querySelectorAll("aside .nav-link").forEach((link) => {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      window.onscroll = function () {
+        if (document.documentElement.scrollTop > 100) {
+          document.querySelector(".btn-back-to-top").style.display = "block";
+        } else {
+          document.querySelector(".btn-back-to-top").style.display = "none";
+        }
+      };
+
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    </script>
+    <script>
+      document.querySelectorAll("aside .nav-link").forEach((link) => {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetSection = document.getElementById(targetId);
+
+          // Ajoutez une classe active à la section cible
+          targetSection.classList.add("active");
+
+          // Faites défiler jusqu'à la section cible
+          targetSection.scrollIntoView({
+            behavior: "smooth",
+          });
+
+          // Supprimez la classe active des autres sections
+          document.querySelectorAll("main .section").forEach((section) => {
+            if (section.id !== targetId) {
+              section.classList.remove("active");
+            }
+          });
+        });
+      });
+    </script>
+    <script>
+      function downloadData() {
+        // Récupérer les données que vous souhaitez télécharger depuis la page
+        const data = document.querySelector('.table-container').innerText; // Par exemple, les données d'un tableau
+    
+        // Créer un objet Blob contenant les données
+        const blob = new Blob([data], { type: 'text/plain' });
+    
+        // Créer un objet URL à partir du Blob
+        const url = window.URL.createObjectURL(blob);
+    
+        // Créer un élément <a> pour le téléchargement
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'donnees.txt'; // Nom du fichier à télécharger
+        a.click();
+    
+        // Libérer l'URL de l'objet Blob
+        window.URL.revokeObjectURL(url);
+      }
+    </script>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>BPELT</title>
+    <!-- Favicon-->
+    <!-- Font Awesome icons (free version)-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link
+      href="{{url_for('static', filename='styles.css')}}"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="page-top">
+    <!-- Navigation-->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top py-1"
+      id="mainNav"
+    >
+      <div class="container">
+       
+
+        <a class="navbar-brand" href="#page-top"></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars ms-1"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#data-upload-and-split">Upload</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#training">Apprentissage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#test_model">test-model</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#Prediction">Prediction</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+    <header class="masthead">
+      <!-- Superposition (overlay) -->
+      <div class="overlay"></div>
+      
+      <!-- Contenu du header -->
+      <div class="container">
+          <h1 class="masthead-heading text-uppercase text-left">
+              𝑯𝒊 !<br />
+              𝒏𝒊𝒄𝒆 𝒕𝒐 𝒔𝒆𝒆 𝒚𝒐𝒖 𝒂𝒈𝒂𝒊𝒏<br />
+              𝒘𝒆𝒍𝒄𝒐𝒎𝒆 𝒕𝒐 𝒐𝒖𝒓 𝒊𝒏𝒕𝒆𝒓𝒇𝒂𝒄𝒆 "𝐵𝒫𝐸𝐿𝒯"!
+          </h1>
+          <p class="masthead-subheading text-muted">
+              "Upload your file, and leave the rest to us!"<br />
+              "Our interface will analyze your data and perform the tasks you specify."<br />
+              "Sit back and let us handle the work, hassle-free."
+          </p>
+          <a href="#data-upload-and-split" class="btn btn-primary btn-xl text-center text-uppercase">
+              Let's Start
+          </a>
+      </div>
+  </header>
+  
+    
+   
+
+   
+<section class="page-section" id="data-upload-and-split">
+    <div class="container">
+        <!-- Titre et sous-titre -->
+        <div class="text-center">
+            <h2 class="section-heading">Upload and Split Data</h2>
+            <h3 class="section-subheading text-muted">Upload your dataset and split it into training and testing data.</h3>
+        </div>
+  
+        <!-- Première rangée pour le téléchargement et la division des données -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="upload-split-container w-full p-6 bg-white rounded-lg shadow-lg">
+                    <div class="upload-icon text-center text-gray-500 mb-4">
+                        <i class="fas fa-upload fa-3x"></i>
+                    </div>
+  
+                    <form id="upload-split-form" method="post" enctype="multipart/form-data" class="text-center">
+                      <div class="file-upload-input mb-4">
+                          <label for="file-input" class="file-input-label text-gray-700">Select a file or drag and drop here</label>
+                          <br><br><br>
+                          <input type="file" id="file-input" name="file" class="file-input">
+                      </div>
+                      <hr>
+                     
+                      <div class="row mb-4">
+                          <div class="col-md-6">
+                            <br>
+                              <div class="form-group mb-4">
+                                  <label for="training-size">Training Data Percentage (%):</label>
+                                  <input type="number" id="training-size" name="training_size" class="" min="0" max="100" placeholder="Indicate the size of the training part  " required>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                            <br>
+                              <div class="form-group mb-4">
+                                  <label for="testing-size">Testing Data Percentage (%):</label>
+                                  <input type="number" id="testing-size" name="testing_size" class="" min="0" max="100" placeholder="Indicate the size of the test part " required>
+                              </div>
+                          </div>
+                      </div>
+
+                      
+                      <div class="form-text">Accepted file types: ARFF</div>
+  
+                      <div class="form-buttons mb-4">
+                          <!-- Assurez-vous d'ajouter target="_blank" au bouton Show Summary -->
+                       <button type="submit" name="upload" class="btn cursor-pointer btn-primary w-1/3 mb-2" formtarget="_blank">Show Summary</button>
+                     
+                        <br>
+                          <button type="submit" name="split" class="btn cursor-pointer btn-success w-1/3 bg-green-500 text-white text-center hover:bg-gray-600 transition duration-300"href="#spliting">Split Data</button>
+                          
+                          </div>
+                  </form>
+                  
+                  <form action="{{ url_for('reset') }}" method="POST">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </form>
+                
+                  
+  
+                   <!-- Afficher les messages -->
+     <!-- Section pour les messages flash -->
+     {% with messages = get_flashed_messages() %}
+     {% if messages %}
+         <div class="alert alert-danger" role="alert">
+             <ul>
+                 {% for message in messages %}
+                     <li>{{ message }}</li>
+                 {% endfor %}
+             </ul>
+         </div>
+     {% endif %}
+  {% endwith %}
+  
+                </div>
+            </div>
+        </div>
+  
+       <!-- Deuxième rangée pour les résultats de la division des données -->
+  <div class="row" id="spliting">
+    <!-- Colonne pour les données d'entraînement -->
+    <div class="col-md-12">
+      <br><br>
+        <div class="data-results-container w-full p-6 bg-white rounded-lg shadow-lg text-center" style="height: 500px; overflow: auto">
+            <h4 class="section-subheading text-muted">Training Data(%)</h4>
+            <p>𝐍𝐮𝐦𝐛𝐞𝐫 𝐨𝐟 𝐫𝐨𝐰𝐬: {{ train_rows }}</p>
+            <div class="data-table ">
+                {{ train_html|safe }}
+            </div>
+        </div>
+    </div>
+  <br>
+    <!-- Colonne pour les données de test -->
+    <div class="col-md-12">
+      <br><br>
+        <div class="data-results-container w-full p-6 bg-white rounded-lg shadow-lg text-center" style="height: 500px; overflow: auto">
+          
+            <h4 class="section-subheading text-muted">Testing Data(%)</h4>
+            <p>𝐍𝐮𝐦𝐛𝐞𝐫 𝐨𝐟 𝐫𝐨𝐰𝐬: {{ test_rows }}</p>
+            <div class="data-table ">
+                {{ test_html|safe }}
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  </section>
+  
+ 
+
+    <!-- Section training -->
+    <section class="page-training white-bg" id="training">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-heading text-uppercase">
+            Select Your Classifiers
+          </h2>
+          <h3 class="section-subheading text-muted">
+            Choose the classifiers that will be used during the training phase,
+            and specify weights or let the system calculate them automatically
+            based on accuracy.
+          </h3>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 mb-4">
+            <!-- Formulaire de sélection de classificateurs -->
+            <main class="container flex justify-center items-center">
+              <div class="p-8 bg-white rounded-lg shadow">
+                <form
+                  id="train-models-form"
+                  method="POST"
+                  action="/train"
+                  class="centered-form"
+                >
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h2 class="text-center mb-3">Select Classifiers</h2>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          id="select-all"
+                          name="select_all"
+                          class="form-check-input"
+                          onchange="toggleClassifiers(this)"
+                        />
+                        <label for="select-all" class="form-check-label"
+                          >Select All</label
+                        ><br />
+
+                        <!-- Checkbox pour chaque classificateur -->
+                        <input
+                          type="checkbox"
+                          id="decision_tree"
+                          name="classifier"
+                          value="decision_tree"
+                          class="form-check-input"
+                        />
+                        <label for="decision_tree" class="form-check-label"
+                          >Decision Tree</label
+                        ><br />
+
+                        <input
+                          type="checkbox"
+                          id="naive_bayes"
+                          name="classifier"
+                          value="naive_bayes"
+                          class="form-check-input"
+                        />
+                        <label for="naive_bayes" class="form-check-label"
+                          >Naive Bayes</label
+                        ><br />
+
+                        <input
+                          type="checkbox"
+                          id="random_forest"
+                          name="classifier"
+                          value="random_forest"
+                          class="form-check-input"
+                        />
+                        <label for="random_forest" class="form-check-label"
+                          >Random Forest</label
+                        ><br />
+
+                        <input
+                          type="checkbox"
+                          id="svm"
+                          name="classifier"
+                          value="svm"
+                          class="form-check-input"
+                        />
+                        <label for="svm" class="form-check-label"
+                          >Support Vector Machine (SVM)</label
+                        ><br />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <h2 class="text-center mb-3">
+                        Specify Weights (Optional)
+                      </h2>
+                      <div class="form-check">
+                        <input
+                          type="radio"
+                          id="automatic_weights"
+                          name="weight_option"
+                          value="automatic"
+                          class="form-check-input"
+                          checked
+                        />
+                        <label for="automatic_weights" class="form-check-label"
+                          >Calculate weights automatically</label
+                        ><br />
+
+                        <input
+                          type="radio"
+                          id="manual_weights"
+                          name="weight_option"
+                          value="manual"
+                          class="form-check-input"
+                        />
+                        <label for="manual_weights" class="form-check-label"
+                          >Specify weights manually</label
+                        ><br />
+                      </div>
+
+                      <div id="weight_inputs" style="display: none">
+                        <!-- Champs de poids -->
+                        <div class="form-group">
+                          <label for="weight_decision_tree"
+                            >Decision Tree Weight:</label
+                          >
+                          <input
+                            type="number"
+                            id="weight_decision_tree"
+                            name="weight_decision_tree"
+                            step="0.01"
+                            min="0"
+                            max="1"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="weight_naive_bayes"
+                            >Naive Bayes Weight:</label
+                          >
+                          <input
+                            type="number"
+                            id="weight_naive_bayes"
+                            name="weight_naive_bayes"
+                            step="0.01"
+                            min="0"
+                            max="1"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="weight_random_forest"
+                            >Random Forest Weight:</label
+                          >
+                          <input
+                            type="number"
+                            id="weight_random_forest"
+                            name="weight_random_forest"
+                            step="0.01"
+                            min="0"
+                            max="1"
+                            class="form-control"
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <label for="weight_svm">SVM Weight:</label>
+                          <input
+                            type="number"
+                            id="weight_svm"
+                            name="weight_svm"
+                            step="0.01"
+                            min="0"
+                            max="1"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <br>
+                  <!-- Bouton de soumission -->
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-success w-100">
+                      Train Models
+                    </button>
+                  </div>
+
+                  <!-- Messages flash -->
+                  {% with messages = get_flashed_messages() %} {% if messages %}
+                  <div class="alert alert-danger" role="alert">
+                    <ul>
+                      {% for message in messages %}
+                      <li>{{ message }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  {% endif %} {% endwith %}
+                </form>
+              </div>
+            </main>
+          </div>
+
+          <!-- Résultats de la formation -->
+          <div class=" col-md-12">
+            <main class="container flex justify-center items-center">
+              <div class="p-4 bg-white rounded-lg shadow">
+                <div
+                  class="container mx-auto mt-4 text-center"
+                  id="resultContainer"
+                >
+                  <h2 class="text-xl font-semibold mb-4">Result</h2>
+                  <table id="results-table" class="table table-bordered">
+                    <thead>
+                      <tr class="bg-light">
+                        <th class="border border-gray-300 px-4 py-2">Model</th>
+                        <th class="border border-gray-300 px-4 py-2">
+                          Accuracy
+                        </th>
+                        <th class="border border-gray-300 px-4 py-2">Weight</th>
+                        <th class="border border-gray-300 px-4 py-2">
+                          F1-Score
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- JavaScript ajoutera des lignes ici -->
+                    </tbody>
+                  </table>
+                </div>
+                <form action="{{ url_for('reset') }}" method="POST">
+                  <button type="submit" class="btn btn-danger">
+                      <i class="fas fa-redo"></i>
+                  </button>
+              </form>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+      
+  <script>
+    function toggleClassifiers(selectAllCheckbox) {
+      const checkboxes = document.querySelectorAll('input[name="classifier"]');
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAllCheckbox.checked;
+      });
+    }
+
+    function toggleWeightInputs() {
+      const manualWeights = document.getElementById('manual_weights').checked;
+      const weightInputs = document.getElementById('weight_inputs');
+      if (manualWeights) {
+        weightInputs.style.display = 'block';
+      } else {
+        weightInputs.style.display = 'none';
+      }
+    }
+
+    document.getElementById('train-models-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      
+      // You can add an AJAX request here to send formData to the server.
+      // For example:
+      // fetch('/train', {
+      //   method: 'POST',
+      //   body: formData
+      // })
+      // .then(response => response.json())
+      // .then(data => {
+      //   console.log(data);
+      // })
+      // .catch(error => {
+      //   console.error(error);
+      // });
+
+      console.log('Form submitted');
+    });
+  </script>
+    </section>
+
+    <section class="page-section" id="test_model">
+      <div class="container">
+        <!-- Section Heading and Subtitle -->
+        <div class="text-center mb-5">
+          <h2 class="section-heading text-uppercase">Test Model</h2>
+          <p class="section-subheading text-muted">
+            Obtain the model that exhibits the greatest level of accuracy and
+            proceed to conduct testing on it.
+          </p>
+        </div>
+
+        <!-- Get Highest Accuracy Model Section -->
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-12 bg-white rounded-lg shadow p-4">
+            <div class="text-center">
+              <h3 class="text-lg font-weight-bold mb-3">
+                Get Highest Accuracy Model
+              </h3>
+              <button
+                class="btn btn-info same-width"
+                onclick="getHighestAccuracyModel()"
+              >
+                Get Model
+              </button>
+            </div>
+            <table id="resultTable" class="table table-bordered mt-3">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Model data will be dynamically inserted here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Test Model Section -->
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-12 bg-white rounded-lg shadow p-4">
+              <div class="text-center">
+                  <h3 class="text-lg font-weight-bold mb-3">Test Model</h3>
+                  <button
+                      id="testButton"
+                      class="btn btn-info same-width"
+                      onclick="testModel()"
+                  >
+                      Test the Model
+                  </button>
+              </div>
+              <!-- Results Container -->
+              <div id="resultsContainer" style="height: 300px; overflow-y: auto;"> <!-- Set the height and enable vertical scrolling -->
+                  <table id="resultsTable" class="table table-bordered mt-3">
+                      <thead>
+                          <tr>
+                              <th>Index</th>
+                              <th>Real Label</th>
+                              <th>Predicted Label</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <!-- Test results will be dynamically inserted here -->
+                      </tbody>
+                  </table>
+              </div>
+              <form action="{{ url_for('reset') }}" method="POST">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </form>
+          </div>
+      </div>
+      
+      <!-- Instance Characteristics Section -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-12 bg-white rounded-lg shadow p-4"
+        >
+          <div class="text-center">
+            <h3 class="text-lg font-weight-bold mb-3">
+              Instance Characteristics
+            </h3>
+            <input
+              type="number"
+              id="instanceIndex"
+              placeholder="Enter instance index"
+              class="form-control mb-3"
+            />
+            <button
+              id="displayInstanceButton"
+              class="btn btn-info same-width"
+              onclick="displayInstance()"
+            >
+              Display Instance Characteristics
+            </button>
+          </div>
+          <div id="instanceDetailsContainer"style="height: 300px; overflow: auto">
+            <table id="instanceDetailsTable" class="table table-bordered mt-3" style="height: 300px; overflow-y: auto;">
+              <thead>
+                <tr>
+                  <th>Characteristic</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Instance details will be dynamically inserted here -->
+              </tbody>
+            </table>
+          </div>
+          <form action="{{ url_for('reset') }}" method="POST">
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-redo"></i>
+            </button>
+        </form>
+        </div>
+       
+      </div>
+    </section>
+
+    <section class="page-section" id="Prediction">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-heading text-uppercase">
+            Prediction and Visualization
+          </h2>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-12 bg-white rounded-lg shadow p-4">
+            <!-- Button to initiate prediction and visualization -->
+            <button
+              id="predictAndVisualizeBtn"
+              class="btn btn-info btn-custom-width mb-4"
+            >
+              Predict and Visualize
+            </button>
+
+            <!-- Container to display results -->
+            <div id="results">
+              <div class="row">
+                <!-- Confusion matrix section -->
+                <div class="col-md-6 mb-4">
+                  <div class="card">
+                    <div class="card-header">Confusion Matrix</div>
+                    <div class="card-body">
+                      <div id="confusionMatrix"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ROC curve and AUC section -->
+                <div class="col-md-6 mb-4">
+                  <div class="card">
+                    <div class="card-header">ROC Curve and AUC</div>
+                    <div class="card-body">
+                      <div id="rocCurve"></div>
+                      <div id="aucScore"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Classification report section -->
+                <div class="col-md-12 mb-4">
+                  <div class="card">
+                    <div class="card-header">Classification Report</div>
+                    <div class="card-body">
+                      <!-- Classification report table -->
+                      <table
+                        id="classificationReportTable"
+                        class="table table-bordered"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Metric</th>
+                            <th>Class 0</th>
+                            <th>Class 1</th>
+                            <!-- Add more class columns if necessary -->
+                            <th>Average</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Rows will be dynamically populated -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Other sections such as accuracy can be added here -->
+            </div>
+            <br>
+            <!-- Bouton aligné à gauche avec Bootstrap -->
+            <form action="{{ url_for('reset') }}" method="POST">
+              <button type="submit" class="btn btn-danger">
+                  <i class="fas fa-redo"></i>
+              </button>
+          </form>
+
+
+  </div>
+</form>
+
+          </div>
+          
+        </div>
+        
+      </div>
+      <!-- Fonction JavaScript pour faire défiler la page vers le haut -->
+<script>
+    /* Afficher le bouton lorsque la page est défilée vers le bas */
+    window.onscroll = function() {
+      if (document.documentElement.scrollTop > 100) {
+          document.querySelector('.btn-back-to-top').style.display = 'block';
+      } else {
+          document.querySelector('.btn-back-to-top').style.display = 'none';
+      }
+  };
+  function scrollToTop() {
+      // Faire défiler la page jusqu'en haut en douceur
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+  }
+</script>
+
+      <!-- Script for handling button click and fetching results -->
+      <script>
+        document
+          .getElementById("predictAndVisualizeBtn")
+          .addEventListener("click", function () {
+            // Perform a POST request to the Flask route /predict_and_visualize
+            fetch("/predict_and_visualize", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("Failed to fetch data");
+                }
+                return response.json();
+              })
+              .then((data) => {
+                // Clear existing content in the results container
+                document.getElementById("confusionMatrix").innerHTML = "";
+                document.getElementById("rocCurve").innerHTML = "";
+                document.getElementById("aucScore").innerHTML = "";
+                document
+                  .getElementById("classificationReportTable")
+                  .querySelector("tbody").innerHTML = "";
+
+                // Display the confusion matrix image if available
+                if (data.confusion_matrix) {
+                  const img = document.createElement("img");
+                  img.src = data.confusion_matrix;
+                  img.alt = "Confusion Matrix";
+                  img.className = "img-fluid";
+                  document.getElementById("confusionMatrix").appendChild(img);
+                }
+
+                // Display ROC curve image and AUC score if available
+                if (data.roc_curve) {
+                  const img = document.createElement("img");
+                  img.src = data.roc_curve;
+                  img.alt = "ROC Curve";
+                  img.className = "img-fluid";
+                  document.getElementById("rocCurve").appendChild(img);
+                }
+
+                if (data.auc_score !== undefined) {
+                  const aucDiv = document.createElement("div");
+                  aucDiv.innerHTML = `<strong>AUC Score:</strong> ${data.auc_score}`;
+                  document.getElementById("aucScore").appendChild(aucDiv);
+                }
+
+                // Display classification report in a table
+                if (data.classification_report) {
+                  const tableBody = document
+                    .getElementById("classificationReportTable")
+                    .querySelector("tbody");
+
+                  // Populate rows based on the classification report data
+                  for (const [label, metrics] of Object.entries(
+                    data.classification_report
+                  )) {
+                    const row = document.createElement("tr");
+                    if (label !== "accuracy") {
+                      row.innerHTML = `
+                            <td>${label}</td>
+                            <td>${metrics["precision"].toFixed(2)}</td>
+                            <td>${metrics["recall"].toFixed(2)}</td>
+                            <td>${metrics["f1-score"].toFixed(2)}</td>
+                            <td>${metrics["support"]}</td>
+                        `;
+                    } else {
+                      // Handle overall accuracy separately
+                      row.innerHTML = `
+                            <td>${label}</td>
+                            <td colspan="4">${metrics.toFixed(2)}</td>
+                        `;
+                    }
+                    tableBody.appendChild(row);
+                  }
+                }
+
+                // You can handle other data sections here
+              })
+              .catch((error) => {
+                console.error("Error fetching data:", error);
+                const resultsDiv = document.getElementById("results");
+                resultsDiv.innerHTML =
+                  "<p>Error fetching data. Please try again later.</p>";
+              });
+          });
+      </script>
+
+
+    </section>
+   
+    <!-- Bouton Back to the top -->
+<button class="btn-back-to-top" onclick="scrollToTop()">
+  <i class="fas fa-arrow-up fa-2x"></i>
+</button>
+
+    <footer class="footer py-1">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 text-lg-start text-center">
+            Copyright &copy; 2024
+          </div>
+          <div class="col-lg-6 text-lg-end">
+            <a class="link-dark text-decoration-none me-3" href="#!"
+              >Privacy Policy</a
+            >
+            <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function toggleClassifiers(selectAllCheckbox) {
+        const checkboxes = document.querySelectorAll(
+          'input[name="classifier"]'
+        );
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = selectAllCheckbox.checked;
+        });
+      }
+    </script>
+
+    <script>
+      function displayInstance() {
+        const index = document.getElementById("instanceIndex").value;
+
+        // Vérifier que l'index est bien un entier
+        if (index !== "" && !isNaN(index)) {
+          fetch(`/get_instance_details`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ index: parseInt(index) }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              const tableBody = document.querySelector(
+                "#instanceDetailsTable tbody"
+              );
+              tableBody.innerHTML = ""; // Effacer les anciennes données
+
+              // Remplir le tableau avec les données de l'instance spécifiée
+              for (const [key, value] of Object.entries(data)) {
+                const row = document.createElement("tr");
+                const characteristicCell = document.createElement("td");
+                characteristicCell.textContent = key;
+                const valueCell = document.createElement("td");
+                valueCell.textContent = value;
+                row.appendChild(characteristicCell);
+                row.appendChild(valueCell);
+                tableBody.appendChild(row);
+              }
+            })
+            .catch((error) => {
+              console.error("Error fetching instance details:", error);
+            });
+        } else {
+          alert("Please enter a valid integer index.");
+        }
+      }
+    </script>
+
+    <!-- Incluez le script JavaScript -->
+    <script>
+      // Fonction pour appeler la route `/test_model` et afficher les résultats
+      function testModel() {
+        // Effectuer une requête AJAX à la route `/test_model`
+        fetch("/test_model", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Obtenez le tableau des résultats
+            const resultsTableBody = document
+              .getElementById("resultsTable")
+              .getElementsByTagName("tbody")[0];
+
+            // Videz le contenu existant du tableau
+            resultsTableBody.innerHTML = "";
+
+            // Parcourez les résultats
+            for (const result of data) {
+              // Créez une nouvelle ligne de tableau
+              const row = document.createElement("tr");
+
+              // Ajoutez les données de résultat à la ligne
+              const indexCell = document.createElement("td");
+              indexCell.textContent = "instance " + result.index;
+              row.appendChild(indexCell);
+
+              const realLabelCell = document.createElement("td");
+              realLabelCell.textContent = result.real_label;
+              row.appendChild(realLabelCell);
+
+              const predictedLabelCell = document.createElement("td");
+              predictedLabelCell.textContent = result.predicted_label;
+              row.appendChild(predictedLabelCell);
+
+              // Ajoutez la ligne au tableau
+              resultsTableBody.appendChild(row);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching test results:", error);
+          });
+      }
+
+      // Attachez un gestionnaire d'événements au bouton pour appeler la fonction `testModel` lorsqu'il est cliqué
+      document
+        .getElementById("testButton")
+        .addEventListener("click", testModel);
+    </script>
+
+    <script>
+      // Function to request the highest accuracy model from the server
+      function getHighestAccuracyModel() {
+        fetch("/get_highest_accuracy_model", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Display the result
+            const resultTable = document.getElementById("resultTable");
+            if (data.status === "success") {
+              const model = data.model;
+              // Clear previous content from the table
+              resultTable.innerHTML = "";
+              // Add model data to the table
+              resultTable.innerHTML = `
+                      <tr>
+                          <td>Classifier:</td>
+                          <td>${model.classifier}</td>
+                      </tr>
+                      <tr>
+                          <td>Accuracy:</td>
+                          <td>${model.accuracy.toFixed(2)}</td>
+                      </tr>
+                      <tr>
+                          <td>F1 Score:</td>
+                          <td>${model.f1_score.toFixed(2)}</td>
+                      </tr>
+                  `;
+            } else {
+              resultTable.innerHTML = `
+                      <tr>
+                          <td colspan="2">Error: ${data.message}</td>
+                      </tr>
+                  `;
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+
+    <!--controle de saisie -->
+
+    <script>
+      document
+        .getElementById("train-models-form")
+        .addEventListener("submit", function (event) {
+          // Get all checkboxes
+          var checkboxes = document.querySelectorAll(
+            'input[name="classifier"]'
+          );
+
+          // Check if at least one checkbox is checked
+          var isChecked = Array.from(checkboxes).some(function (checkbox) {
+            return checkbox.checked;
+          });
+
+          // If no checkbox is checked, prevent form submission
+          if (!isChecked) {
+            alert("Please select at least one classifier.");
+            event.preventDefault();
+          }
+        });
+    </script>
+
+    <!--fin de controle de saisie -->
+
+    <script>
+      // JavaScript pour gérer l'affichage des champs de poids en fonction du choix de l'utilisateur
+      document
+        .querySelectorAll('input[name="weight_option"]')
+        .forEach(function (input) {
+          input.addEventListener("change", function () {
+            const weightInputs = document.getElementById("weight_inputs");
+            if (input.value === "manual") {
+              weightInputs.style.display = "block";
+            } else {
+              weightInputs.style.display = "none";
+            }
+          });
+        });
+    </script>
+
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var formData = new FormData(this);
+          fetch("/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.error) {
+                document.getElementById("summary").innerHTML = data.error;
+              } else {
+                // Afficher le résumé
+                var summaryHTML = "<h3>Summary:</h3>";
+                summaryHTML += `<p>Number of rows: ${data.num_rows}</p>`;
+                summaryHTML += `<p>Number of columns: ${data.num_columns}</p>`;
+                summaryHTML += "<p>Column names:</p><ul>";
+                data.column_names.forEach((name) => {
+                  summaryHTML += `<li>${name}</li>`;
+                });
+                summaryHTML += "</ul>";
+                summaryHTML += "<h3>Summary Statistics:</h3>";
+                for (var col in data.summary_stats) {
+                  summaryHTML += `<p><strong>${col}</strong>: `;
+                  for (var stat in data.summary_stats[col]) {
+                    summaryHTML += `${stat}: ${data.summary_stats[col][
+                      stat
+                    ].toFixed(2)}, `;
+                  }
+                  summaryHTML += "</p>";
+                }
+                document.getElementById("summary").innerHTML = summaryHTML;
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById("summary").innerHTML =
+                "An error occurred";
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+    
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='scripts.js')}}"
+    ></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  </body>
+</html>

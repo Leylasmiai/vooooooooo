@@ -1,0 +1,334 @@
+/* Navbar Styling */
+.navbar {
+  background-color: #343a40; /* Couleur d'arrière-plan de la navbar */
+}
+
+.navbar a {
+  color: #fff; /* Couleur de texte pour les liens */
+}
+
+.navbar a:hover {
+  color: #599de0; /* Couleur de texte pour les liens au survol */
+}
+
+.navbar .navbar-brand {
+  font-weight: bold; /* Poids de police pour la marque de la navbar */
+}
+
+.navbar .nav-link {
+  margin-right: 1rem; /* Marge droite pour les liens de la navbar */
+}
+
+.navbar .navbar-toggler {
+  border: none; /* Supprime la bordure autour du toggler */
+  color: #fff; /* Couleur du toggler (icône de menu) */
+}
+
+.navbar .navbar-toggler:hover {
+  color: #f6f7df; /* Couleur du toggler au survol */
+}
+
+.navbar-nav {
+  flex-direction: row; /* Les éléments de la navbar-nav sont en ligne */
+  align-items: center; /* Centrer verticalement les éléments */
+}
+
+.navbar-nav .nav-item {
+  margin-right: 1rem; /* Marge droite pour chaque élément de la navbar */
+}
+
+.navbar-nav .nav-item:last-child {
+  margin-right: 0; /* Pas de marge droite pour le dernier élément */
+}
+
+/* Styles personnalisés */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+}
+h1 {
+  color: #e9ebeb;
+    font-style: bold;
+    text-align: center;
+
+}
+.btn-back-to-top {
+  position: fixed;
+  bottom: 20px; /* Placez-le en bas de la page */
+  right: 20px; /* Placez-le à droite de la page */
+  background-color:#157347; /* Couleur de fond bleue */
+  color: white; /* Couleur de texte blanche */
+  padding: 12px; /* Ajoutez un peu plus de padding pour un bouton plus grand */
+  border-radius: 5000%; /* Rendre le bouton circulaire */
+  border: none;
+  cursor: pointer; /* Changer le curseur au survol */
+  display: none; /* Cacher le bouton par défaut */
+  z-index: 100; /* Assure que le bouton est au-dessus d'autres éléments */
+}
+
+ h3, h4 {
+    color: #000000;
+    font-style: bold;
+    text-align: center;
+}
+
+.summary-info ul,
+.split-data ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.summary-info ul li,
+.split-data ul li {
+    margin-bottom: 8px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
+
+
+/* Styles pour le conteneur du pie chart */
+.pie-chart-container {
+  /* Le background est facultatif, vous pouvez le personnaliser selon vos besoins */
+  background-color: #b48e8e;
+  border-radius: 8px; /* Coin arrondi */
+  box-shadow: 0 2px 5px rgba(82, 60, 60, 0.2); /* Ombre subtile pour l'effet de profondeur */
+  padding: 5px; /* Espacement interne */
+  margin-top: 5px; /* Espacement avec l'élément au-dessus */
+}
+
+/* Styles pour l'image du pie chart */
+.pie-chart-img {
+  width: 20 0%; /* Ajuste la largeur de l'image à la largeur du conteneur */
+  height: auto; /* Maintient les proportions de l'image */
+  display: block; /* Permet à l'image de s'afficher comme un bloc */
+ /* Centre l'image dans le conteneur */
+}
+
+/* Styles pour le titre de la section Pie Chart */
+.pie-chart-title {
+  text-align: center; /* Centre le titre */
+  font-weight: bold; /* Rendre le titre en gras */
+  margin-bottom: 10px; /* Ajoute un espacement en dessous du titre */
+}
+
+
+/* Style pour le footer */
+footer {
+  background-color: #343a40; /* Couleur de fond sombre */
+  color: #ffffff; /* Couleur de texte blanche */
+  padding: 20px; /* Espacement interne */
+  text-align: center; /* Aligner le contenu au centre */
+  border-top: 1px solid #ffffff; /* Bordure supérieure pour démarquer le footer */
+}
+
+footer a {
+  color: #f6f7df; /* Couleur de lien blanche */
+  text-decoration: none; /* Supprimer la décoration de lien (soulignement) */
+  margin: 0 10px; /* Espacement horizontal entre les liens */
+}
+
+footer a:hover {
+  text-decoration: underline; /* Souligner le lien au survol */
+}
+
+main {
+  flex: 1; /* Permet au main de prendre le reste de l'espace disponible */
+  padding: 30px;
+  margin-left: 10px; /* Espacement entre l'aside et le main */
+}
+aside {
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 150%;
+  width: 200px;
+  background-color: #f8f9fa;
+  padding-top: 80px; /* Height of navbar */
+}
+
+.section {
+  padding: 1000px;
+  margin-top: 0px;
+}
+.active {
+  border: 4px solid #E69EF8;
+}
+.square-info,
+.square-success {
+  width: 150px; /* Taille du carré */
+  height: 60px; /* Taille du carré */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Espacement entre les carrés */
+  border-radius: 10px; /* Rendre les carrés arrondis */
+}
+
+.square-info span,
+.square-success span {
+  font-size: 16px; /* Taille de la police */
+}
+
+.square-info {
+  background-color: #ca79c2e7; /* Couleur bleue */
+}
+
+.square-success {
+  background-color: #86c7e1; /* Couleur verte */
+}
+
+
+
+.file-name {
+  
+
+  text-align: left;
+  font-size: 20px;
+  color: #b9afd2;
+  margin-bottom: px;
+  padding-left: 20px; /* Height of navbar */
+
+}
+.sidebar-header {
+  margin-bottom: 10px;
+}
+
+.sidebar-header h3 {
+  padding: 50px;
+  text-align: left;
+  color: #828181;
+  font-size: 20px;
+  margin-bottom: 0px;
+  padding-left: 20px; /* Height of navbar */
+
+  
+}
+
+
+/* CSS */
+.table-container {
+  text-align: center;
+  font-size: 12px; /* Taille de police plus petite */
+}
+
+/* Changer la couleur de la première ligne */
+.table-container table tbody tr:first-child {
+  background-color: #c41c1c; /* Couleur de fond */
+  color: #9266b1; /* Couleur du texte */
+}
+/* Ajoute une couleur de fond fluide et transparent lors du survol */
+.section:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Couleur de fond transparente */
+}
+
+/* Augmente la taille de la police et ajoute une couleur de texte lorsque survolé */
+.section:hover .section-heading {
+  font-size: 30px; /* Augmente la taille de la police */
+  color: #0517b8; /* Couleur de texte au survol */
+}
+/* Style personnalisé pour la barre latérale */
+aside {
+  background-color: #343a40; /* Couleur de fond */
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff; /* Couleur du texte */
+}
+
+
+
+
+
+.nav-link {
+  color: #fff; /* Couleur du texte des liens */
+  font-size: 16px; /* Taille de la police des liens */
+  transition: all 0.3s ease; /* Transition douce pour les effets */
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Couleur de fond lors du survol */
+  border-radius: 5px; /* Bordure arrondie lors du survol */
+}
+
+/* Style personnalisé pour la section active */
+main .section.active {
+  background-color: rgba(255, 255, 255, 0.1); /* Couleur de fond transparente */
+}
+
+/* Styles for the language selector dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  color: #fff; /* Text color of the dropdown toggle button */
+  background-color: transparent; /* Transparent background for the button */
+  border: none; /* Remove default button border */
+}
+
+.dropdown-toggle:focus {
+  box-shadow: none; /* Remove focus box shadow */
+}
+
+.dropdown-menu {
+  background-color: #343a40; /* Background color of the dropdown menu */
+  border: none; /* Remove default menu border */
+}
+
+.dropdown-menu a {
+  color: #fff; /* Text color of dropdown items */
+}
+
+.dropdown-menu a:hover {
+  background-color: #495057; /* Background color on hover */
+}
+
+/* Styles for the language selector icon */
+.dropdown-toggle i {
+  margin-right: 5px; /* Add some space between the icon and text */
+}
+.btn-download {
+  background-color: #454646; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: none; /* Supprime les bordures */
+  padding: 10px 20px; /* Remplissage intérieur */
+  border-radius: 5px; /* Bordure arrondie */
+  cursor: pointer; /* Curseur de la souris */
+  transition: background-color 0.3s ease; /* Transition en douceur lors du survol */
+}
+
+.btn-download:hover {
+  background-color: #8094a9bb; /* Couleur de fond au survol */
+  color: #2811d4;
+}
+
+.btn-text {
+  display: none;
+}
+
+.btn-download:hover .btn-text {
+  display: inline-block;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
